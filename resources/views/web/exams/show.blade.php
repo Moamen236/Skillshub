@@ -44,7 +44,7 @@
 
                 <!-- main blog -->
                 <div id="main" class="col-md-9">
-
+                    @include('web.inc.messages')
                     <!-- blog post -->
                     <div class="blog-post mb-5">
                         <p>{{$exam->desc()}}</p>       
@@ -52,7 +52,12 @@
                     <!-- /blog post -->
                     
                     <div>
-                        <a href="{{ url("exams/questions/{$exam->id}") }}" class="main-button icon-button pull-left">Start Exam</a>
+                        @if($can_viwe_start_btn)
+                            <form action="{{ url("exams/start/{$exam->id}") }}" method="post">
+                                @csrf
+                                <button type="submit" class="main-button icon-button pull-left">Start Exam</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
                 <!-- /main blog -->
