@@ -23,4 +23,9 @@ class Cat extends Model
 
         return json_decode($this->name)->$lang;
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }
