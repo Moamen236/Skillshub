@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-
-        return view('web.home.index');
+        $categories = Cat::all();
+        return view('web.home.index', compact('categories'));
     }
 }

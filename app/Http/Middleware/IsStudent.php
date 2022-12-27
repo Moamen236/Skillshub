@@ -20,7 +20,7 @@ class IsStudent
     {
         $studentRole = Role::where('name', 'student')->first();
 
-        if (Auth::user()->role->name == 'student') {
+        if (Auth::user()->role->id !== $studentRole->id) {
             return redirect(url("/"));
         }
         return $next($request);

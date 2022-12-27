@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
-use App\Models\Exam;
 use Carbon\Carbon;
+use App\Models\Exam;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
@@ -85,7 +86,7 @@ class ExamController extends Controller
         }
         // update pivot table
         $user->exams()->updateExistingPivot($exam_id, [
-            'score' => $score,
+            'score' => number_format($score, 2, '.', ','),
             'time_mins' => $time_mins
         ]);
 

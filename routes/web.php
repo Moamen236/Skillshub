@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\admin\CatController as AdminCatController;
-use App\Http\Controllers\admin\HomeController as AdminHomeController;
-use App\Http\Controllers\admin\SkillController as AdminSkillController;
-use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\web\CatController;
 use App\Http\Controllers\web\ExamController;
 use App\Http\Controllers\web\HomeController;
 use App\Http\Controllers\web\LangController;
-use App\Http\Controllers\web\ProfileController;
 use App\Http\Controllers\web\SkillController;
+use App\Http\Controllers\Admin\ExamsController;
+use App\Http\Controllers\web\ProfileController;
+use App\Http\Controllers\admin\CatController as AdminCatController;
+use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\SkillController as AdminSkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware('lang')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified',  'student']);
 });
 
-Route::post('/exams/start/{id}', [ExamController::class, 'start'])->middleware(['auth', 'verified', 'student', 'can_enetr_exam']);
+Route::post('/exams/start/{id}', [ExamController::class, 'start'])->middleware(['auth', 'verified', 'student', 'can_enter_exam']);
 Route::post('/exams/submit/{id}', [ExamController::class, 'submit'])->middleware(['auth', 'verified', 'student']);
 
 Route::post('/contact/message/send', [ContactController::class, 'send']);
@@ -54,4 +55,18 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can_enetr_dashboard
     Route::post('/skills/update', [AdminSkillController::class, 'update']);
     Route::get('/skills/delete/{skill}', [AdminSkillController::class, 'delete']);
     Route::get('/skills/toggle/{skill}', [AdminSkillController::class, 'toggle']);
+
+    Route::get('/exams', [ExamsController::class, 'index']);
+    Route::get('/exams/show/{exam}', [ExamsController::class, 'show']);
+    Route::get('/exams/show/{exam}/questions', [ExamsController::class, 'questions']);
+    Route::get('/exams/create', [ExamsController::class, 'create']);
+    Route::get('/exams/create-questions/{exam}', [ExamsController::class, 'createQuestions']);
+    Route::post('/exams/store', [ExamsController::class, 'store']);
+    Route::post('/exams/create-questions/{exam}', [ExamsController::class, 'storeQuestions']);
+    Route::get('/exams/edit/{exam}', [ExamsController::class, 'edit']);
+    Route::post('/exams/update/{exam}', [ExamsController::class, 'update']);
+    Route::get('/exams/edit/{exam}/question/{question}', [ExamsController::class, 'editQuestion']);
+    Route::post('/exams/update/question/{question}', [ExamsController::class, 'updateQuestion']);
+    Route::get('/exams/delete/{exam}', [ExamsController::class, 'destroy']);
+    Route::get('/exams/toggle/{exam}', [ExamsController::class, 'toggle']);
 });

@@ -20,15 +20,14 @@ class SkillController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name_en' => 'required|string|max:50',
             'name_ar' => 'required|string|max:50',
-            'img' => 'required|image|max:2048',
+            'img' => 'required|image',
             'cat_id' => 'required|exists:cats,id',
         ]);
 
-        $path = Storage::putFile("skills", $request->file('img'));
+        $path = Storage::disk('uploads')->put('skills', $request->img); //file('img')
 
         Skill::create([
             'name' => json_encode([
@@ -40,7 +39,6 @@ class SkillController extends Controller
         ]);
 
         $request->session()->flash('msg', 'row created sucessfully');
-        dd($request->all());
         return back();
     }
 

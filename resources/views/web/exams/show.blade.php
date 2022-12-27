@@ -53,7 +53,7 @@
                     
                     <div>
                         @if($can_viwe_start_btn)
-                            <form action="{{ url("exams/start/{$exam->id}") }}" method="post">
+                            <form action="{{ url("/exams/start/{$exam->id }") }}" method="post">
                                 @csrf
                                 <button type="submit" class="main-button icon-button pull-left">Start Exam</button>
                             </form>

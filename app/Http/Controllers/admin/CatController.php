@@ -31,14 +31,13 @@ class CatController extends Controller
 
         $request->session()->flash('msg', 'row created sucessfully');
         return back();
-        // dd($request->all());
     }
 
     public function delete(Cat $cat, Request $request)
     {
         try {
             $cat->delete();
-            $msg = "row deleted sucessfully";
+            $msg = "row deleted successfully";
         } catch (Exception $e) {
             $msg = "can't delete this row";
         }

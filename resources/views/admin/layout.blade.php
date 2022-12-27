@@ -17,7 +17,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('admin/css/adminlte.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />	@yield('styles')
+    <link rel="stylesheet" href="{{ asset('/admin/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/modules/select2/dist/css/select2.min.css') }}">
+    <style>
+        .select2-container .select2-selection--single{
+            height: 38px !important;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow{
+            top: 6px !important
+        }
+    </style>
+    @yield('styles')
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -70,9 +81,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('dashboard/skills') }}" class="nav-link">
-                    <i class="fas fa-cogs"></i>
+                    <i class="fa fa-brain"></i>
                     <p>
                         skills
+                    </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('dashboard/exams') }}" class="nav-link">
+                    <i class="fa fa-file"></i>
+                    <p>
+                        exams
                     </p>
                     </a>
                 </li>
@@ -115,7 +134,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 	<!-- AdminLTE App -->
 	<script src="{{ asset('admin/js/adminlte.js') }}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	@yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="{{ asset('/admin/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('/admin/modules/summernote/summernote-bs4.js') }}"></script>
+	<script src="{{ asset('/admin/modules/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/script.js') }}"></script>
+    @yield('scripts')
 	</body>
 </html>
